@@ -40,8 +40,15 @@ vim.g.maplocalleader = "\\"
 if vim.fn.has('mac') == 1 then
   vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave", "CmdlineLeave" }, {
     callback = function()
-      -- macOS用 (英数キーボード: com.apple.keylayout.ABC)
       vim.fn.system("im-select com.apple.keylayout.ABC")
+    end,
+  })
+elseif vim.fn.has('win32') == 1 then
+  vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave", "CmdlineLeave" }, {
+    callback = function()
+      -- zenhan.exe をパスが通っている場所に配置
+      -- https://github.com/iuchim/zenhan
+      vim.fn.system("zenhan.exe 0")
     end,
   })
 end
