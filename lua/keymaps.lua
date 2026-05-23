@@ -15,3 +15,7 @@ map('i', 'jj', '<ESC>', { noremap = true })
 map('n', '<Leader>b', '<Cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 map('n', '<Leader>mp', '<Cmd>MarkdownPreviewToggle<CR>', { noremap = true, silent = true })
+
+map('n', '<S-h>', '<Cmd>bprevious<CR>', { noremap = true })
+map('n', '<S-l>', '<Cmd>bnext<CR>', { noremap = true })
+map('n', '<Leader>bd', '<Cmd>bdelete<CR>', { noremap = true })
