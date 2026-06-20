@@ -7,28 +7,40 @@ vim.o.fileformats = "unix,dos,mac"
 -- 行番号
 vim.o.number = true
 vim.o.relativenumber = true
+
 -- 自動インデント
 vim.o.smartindent = true
+
 -- OSのクリップボードと同期
 vim.o.clipboard = "unnamed"
+
 -- 制御文字を可視化
 vim.o.list = true
+
 -- タブキー押下時、タブ文字でなくスペースを入力
 vim.o.expandtab = true
+
 -- タブ文字の表示幅
 vim.o.tabstop = 2
+
 -- インデントの幅
 vim.o.shiftwidth = 2
+
 -- 画面端での折り返し
 vim.o.wrap = false
+
 -- フルカラー表示
 vim.o.termguicolors = true
+
 -- 補完候補の見た目
 vim.o.wildmenu = true
+
 -- 行数、列数表示
 vim.o.ruler = true
+
 -- 検索時の大文字、小文字の取り扱い
 vim.o.smartcase = true
+
 -- 対応する括弧を強調
 vim.o.showmatch = true
 
@@ -37,30 +49,16 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = "\\"
 
 -- ノーマルモードに戻った時にIMEをオフにする
-if vim.fn.has('mac') == 1 then
-  vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave", "CmdlineLeave" }, {
-    callback = function()
+vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave", "CmdlineLeave" }, {
+  callback = function()
+    if vim.fn.has('mac') == 1 then
+      -- im-selectをインストール
+      -- $ brew tap daipeihust/tap && brew trust daipeihust/tap && brew install im-select
       vim.fn.system("im-select com.apple.keylayout.ABC")
-    end,
-  })
-elseif vim.fn.has('win32') == 1 then
-  vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave", "CmdlineLeave" }, {
-    callback = function()
+    elseif vim.fn.has('win32') == 1 then
       -- zenhan.exe をパスが通っている場所に配置
       -- https://github.com/iuchim/zenhan
       vim.fn.system("zenhan.exe 0")
-    end,
-  })
-end
-
-vim.api.nvim_create_user_command('TabWidth2', function()
-  vim.o.tabstop = 2
-  vim.o.shiftwidth = 2
-end,
-{ desc = "インデント幅を2に設定" })
-
-vim.api.nvim_create_user_command('TabWidth4', function()
-  vim.o.tabstop = 4
-  vim.o.shiftwidth = 4
-end,
-{ desc = "インデント幅を4に設定" })
+    end
+  end,
+})
