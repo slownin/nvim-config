@@ -31,6 +31,8 @@ vim.o.wrap = false
 
 -- フルカラー表示
 vim.o.termguicolors = true
+vim.o.winblend = 0
+vim.o.pumblend = 0
 
 -- 補完候補の見た目
 vim.o.wildmenu = true
