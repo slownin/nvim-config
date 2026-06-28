@@ -1,11 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
-  -- キー入力、またはコマンド実行時に遅延ロード（Lazy Load）
-  keys = {
-    { "<C-t>", desc = "Toggle Terminal" },
-    { "<leader>g", desc = "Toggle LazyGit" },
-  },
   cmd = { "ToggleTerm" },
   config = function()
     local toggleterm = require("toggleterm")
@@ -14,7 +9,7 @@ return {
       -- Ctrl + t で開閉する設定（ノーマルモード用）
       open_mapping = [[<C-t>]],
 
-      -- 画面下（horizontal）に開く
+      -- 画面下に開く
       direction = "horizontal",
 
       -- ターミナルサイズ（高さ）の指定（画面の30%）
@@ -29,11 +24,9 @@ return {
       terminal_mappings = true,
     })
 
-    -- ====================================================================
-    -- 1. ターミナル内から他ウィンドウへの移動（Ctrl + h, j, k, l）
-    -- ====================================================================
     function _G.set_terminal_keymaps()
       local opts = { buffer = 0 }
+
       -- Esc 2回でノーマルモードに戻る
       vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], opts)
 
