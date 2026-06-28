@@ -1,3 +1,19 @@
+--- 実行環境がmacosか否か判定
+-- @return boolean true: macos, false: macos以外
+local function macp()
+  return vim.fn.has('mac') == 1 ~= nil
+end
+
+--- 実行環境がWindowsか否か判定
+-- @return boolean true: Windows, false: Windows以外
+local function windowsp()
+  return vim.fn.has('win32') == 1 ~= nil
+end
+
+-- Leaderキー
+vim.g.mapleader = ' '
+vim.g.maplocalleader = "\\"
+
 -- 文字コード、改行コード
 vim.o.encoding = 'utf-8'
 vim.scriptencoding = "utf-8"
@@ -46,18 +62,14 @@ vim.o.smartcase = true
 -- 対応する括弧を強調
 vim.o.showmatch = true
 
--- リーダーキー
-vim.g.mapleader = ' '
-vim.g.maplocalleader = "\\"
-
 -- ノーマルモードに戻った時にIMEをオフにする
 vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave", "CmdlineLeave" }, {
   callback = function()
-    if vim.fn.has('mac') == 1 then
+    if macp() then
       -- im-selectをインストール
       -- $ brew tap daipeihust/tap && brew trust daipeihust/tap && brew install im-select
       vim.fn.system("im-select com.apple.keylayout.ABC")
-    elseif vim.fn.has('win32') == 1 then
+    elseif windowsp() then
       -- zenhan.exe をパスが通っている場所に配置
       -- https://github.com/iuchim/zenhan
       vim.fn.system("zenhan.exe 0")

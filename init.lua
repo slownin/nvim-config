@@ -1,6 +1,4 @@
 require("base")
-require("keymaps")
-require("commands")
-require("lsp")
 require("config.lazy")
-require("vlime")
+require("commands")
+require("keymaps")

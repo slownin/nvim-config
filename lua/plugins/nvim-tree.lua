@@ -6,7 +6,7 @@ return {
     },
     git = {
       enable = false,
-    }
+    },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons"
