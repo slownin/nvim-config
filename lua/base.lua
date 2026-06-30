@@ -1,13 +1,13 @@
 --- 実行環境がmacosか否か判定
 -- @return boolean true: macos, false: macos以外
 local function macp()
-  return vim.fn.has('mac') == 1 ~= nil
+  return vim.fn.has('mac') == 1
 end
 
 --- 実行環境がWindowsか否か判定
 -- @return boolean true: Windows, false: Windows以外
 local function windowsp()
-  return vim.fn.has('win32') == 1 ~= nil
+  return vim.fn.has('win32') == 1
 end
 
 -- Leaderキー
