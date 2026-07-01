@@ -33,6 +33,13 @@ vim.o.clipboard = "unnamed"
 -- 制御文字を可視化
 vim.o.list = true
 
+vim.opt.listchars = {
+  tab = '»-',
+  trail = '·',
+  eol = '↲',
+  space = '·',
+}
+
 -- タブキー押下時、タブ文字でなくスペースを入力
 vim.o.expandtab = true
 
