@@ -68,18 +68,3 @@ vim.o.smartcase = true
 
 -- 対応する括弧を強調
 vim.o.showmatch = true
-
--- ノーマルモードに戻った時にIMEをオフにする
-vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave", "CmdlineLeave" }, {
-  callback = function()
-    if macp() then
-      -- im-selectをインストール
-      -- $ brew tap daipeihust/tap && brew trust daipeihust/tap && brew install im-select
-      vim.fn.system("im-select com.apple.keylayout.ABC")
-    elseif windowsp() then
-      -- zenhan.exe をパスが通っている場所に配置
-      -- https://github.com/iuchim/zenhan
-      vim.fn.system("zenhan.exe 0")
-    end
-  end,
-})
