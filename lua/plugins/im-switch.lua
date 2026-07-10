@@ -21,12 +21,34 @@ return {
       return false
     end
 
-    vim.api.nvim_create_autocmd({ "SafeState", "CursorMoved", "WinEnter" }, {
-      pattern = "*",
-      callback = function()
-        local current_mode = vim.api.nvim_get_mode().mode
-        if current_mode == "n" then
+    local has_focus = true
+    local group = vim.api.nvim_create_augroup("ImSwitchFocusStrict", { clear = true })
+
+    vim.api.nvim_create_autocmd("FocusGained", {
+      group = group,
+      callback = function() has_focus = true end,
+    })
+
+    vim.api.nvim_create_autocmd("FocusLost", {
+      group = group,
+      callback = function() has_focus = false end,
+    })
+
+    local timer = vim.loop.new_timer()
+    if timer then
+      timer:start(0, 200, vim.schedule_wrap(function()
+        if has_focus and vim.api.nvim_get_mode().mode == "n" then
           system.run_system(command)
+        end
+      end))
+    end
+
+    vim.api.nvim_create_autocmd("VimLeavePre", {
+      group = group,
+      callback = function()
+        if timer then
+          timer:stop()
+          timer:close()
         end
       end,
     })
