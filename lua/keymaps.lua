@@ -16,8 +16,8 @@ vim.keymap.set("n", "<Tab>",      "<Cmd>bprevious<CR>", { desc = "次のバッ�
 vim.keymap.set("n", "<S-Tab>",    "<Cmd>bnext<CR>",     { desc = "前のバッファ" })
 vim.keymap.set("n", "<Leader>bd", "<Cmd>bdelete<CR>",   { desc = "バッファを削除" })
 
--- neo-tree
-vim.keymap.set("n", "<Leader>b", "<Cmd>Neotree toggle=true<CR>", { desc = "neo-tree 表示/非表示" })
+-- nvim-tree
+vim.keymap.set("n", "<Leader>b", "<Cmd>NvimTreeToggle<CR>", { desc = "nvim-tree 表示/非表示" })
 
 -- Telescope
 local builtin = require("telescope.builtin")
