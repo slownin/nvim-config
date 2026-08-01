@@ -4,6 +4,7 @@ return {
     "nvim-tree/nvim-web-devicons", -- optional, for file icons
   },
   opts = {
+    sync_root_with_cwd = true,
     filesystem_watchers = {
       enable = false,
     },
