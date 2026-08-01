@@ -13,6 +13,7 @@ end
 -- Leaderキー
 vim.g.mapleader = ' '
 vim.g.maplocalleader = "\\"
+vim.g.vlime_leader = ','
 
 -- 文字コード、改行コード
 vim.o.encoding = 'utf-8'
