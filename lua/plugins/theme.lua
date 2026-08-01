@@ -5,7 +5,7 @@ return {
   config = function ()
     require('kanagawa').setup({
       compile = false,
-      background = { dark = "lotus", light = "lotus" },
+      background = { dark = "wave", light = "wave" },
       transparent = true,
     })
 
