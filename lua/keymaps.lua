@@ -70,3 +70,7 @@ end, { desc = 'Debug: Set Conditional Breakpoint' })
 -- UIの表示・非表示
 vim.keymap.set('n', '<Leader>du', function() dapui.toggle() end, { desc = 'Debug: Toggle UI' })
 
+-- powershell.nvim
+local powershell = require("powershell")
+vim.keymap.set("n", "<leader>ld", function() powershell.toggle_debug_term() end)
+
