@@ -49,3 +49,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts) -- エラー詳細
   end,
 })
+
+-- デバッグ
+-- nvim-dap、nvim-dap-ui
+local dap = require('dap')
+local dapui = require('dapui')
+
+-- デバッグ制御系 (d + アルファベット)
+vim.keymap.set('n', '<Leader>dc', function() dap.continue() end, { desc = 'Debug: Continue (Start)' })
+vim.keymap.set('n', '<Leader>do', function() dap.step_over() end, { desc = 'Debug: Step Over' })
+vim.keymap.set('n', '<Leader>di', function() dap.step_into() end, { desc = 'Debug: Step Into' })
+vim.keymap.set('n', '<Leader>dO', function() dap.step_out() end, { desc = 'Debug: Step Out' })
+
+-- ブレークポイント操作
+vim.keymap.set('n', '<Leader>db', function() dap.toggle_breakpoint() end, { desc = 'Debug: Toggle Breakpoint' })
+vim.keymap.set('n', '<Leader>dB', function()
+  dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) 
+end, { desc = 'Debug: Set Conditional Breakpoint' })
+
+-- UIの表示・非表示
+vim.keymap.set('n', '<Leader>du', function() dapui.toggle() end, { desc = 'Debug: Toggle UI' })
+
